@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{category["name"]}}</td>
+                <td>{{category["description"]}}</td>
+                <td>{{category["type"]}}</td>
+             </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<form action="/categories" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control"
+            name="name" placeholder="Name of Category" type="text"/>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="description" placeholder="Description"
+        type="text"/>
+    </div>
+    <div class="form-group"> 
+        <label for="type">Category Type</label>
+        <select name="type">
+          <option value="Expense">Expense</option>
+          <option value="Saving">Saving</option>
+          </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Add Category</button>
+</form>
+
+{% endblock %}

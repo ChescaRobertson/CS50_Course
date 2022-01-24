@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expenses
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for expense in expenses %}
+
+            <tr>
+                <td>{{expense["category"]}}</td>
+                <td>{{expense["description"]}}</td>
+                <td>{{expense["amount"]}}</td>
+                <th>{{expense["inptdate"]}}</th>
+             </tr>
+            {% endfor %}
+
+            <tfoot>
+            <tr>
+                <td colspan= "4">Total Expenses</td>
+                <td>{{total_expenses}}</td>
+            </tr>
+        </tfoot>
+        </tbody>
+
+    </table>
+<table>
+    <td>
+<form action="/transactions" method="post">
+    <div class="form-group">
+                <select class="form-control" name="category" placeholder="Category">
+                <option disabled selectd value="">Category</option>
+                {% for name in names %}
+                    <option value="{{name}}">{{name}}</option>
+                {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="description" placeholder="Description"
+        type="text"/>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="amount"
+         placeholder="Amount" type="text"/>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="date"
+         placeholder="Date" type="date"/>
+    </div>
+    <button class="btn btn-primary" type="submit">Add Expense</button>
+    </td>
+
+</table>
+
+
+{% endblock %}
